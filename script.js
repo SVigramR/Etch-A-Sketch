@@ -23,6 +23,12 @@ const eraserBtn = document.getElementById('eraserBtn');
 const rainbowBtn = document.getElementById('rainbowBtn');
 const clearBtn = document.getElementById('clearBtn');
 const container = document.getElementById("container");
+const redBtn = document.getElementById("redBtn");
+const greenBtn = document.getElementById("greenBtn");
+const blueBtn = document.getElementById("blueBtn");
+const rgBtn = document.getElementById("redGreenBtn");
+const gbBtn = document.getElementById("greenBlueBtn");
+const brBtn = document.getElementById("blueRedBtn");
 
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => refreshSize(e.target.value);
