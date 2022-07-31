@@ -37,6 +37,9 @@ colorPicker.oninput = (e) => setColor(e.target.value);
 colorBtn.onclick = () => setMode('color');
 eraserBtn.onclick = () => setMode('eraser');
 rainbowBtn.onclick = () => setMode('rainbow');
+redBtn.onclick = () => setMode('red');
+greenBtn.onclick = () => setMode('green');
+blueBtn.onclick = () => setMode('blue');
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -83,16 +86,30 @@ function changeColor(e) {
         e.target.style.backgroundColor = '#ffffff';
     } else if (currentMode === 'color'){
         e.target.style.backgroundColor = currentColor;
+    } else if (currentMode === 'red'){
+        e.target.style.backgroundColor = `rgb(${random(256)}, 0, 0)`;
+    } else if (currentMode === 'green'){
+        e.target.style.backgroundColor = `rgb(0, ${random(256)}, 0)`;
+    } else if (currentMode === 'blue'){
+        e.target.style.backgroundColor = `rgb(0, 0, ${random(256)})`;
     }
+
 }
+
 
 function activateBtn(newMode) {
     if (currentMode === 'rainbow') {
-      rainbowBtn.classList.remove('active');
+        rainbowBtn.classList.remove('active');
     } else if (currentMode === 'color') {
-      colorBtn.classList.remove('active');
+        colorBtn.classList.remove('active');
     } else if (currentMode === 'eraser') {
-      eraserBtn.classList.remove('active');
+        eraserBtn.classList.remove('active');
+    } else if (currentMode === 'red') {
+        redBtn.classList.remove('active');
+    } else if (currentMode === 'green') {
+        greenBtn.classList.remove('active');
+    } else if (currentMode === 'blue') {
+        blueBtn.classList.remove('active');
     }
   
     if (newMode === 'rainbow') {
@@ -101,6 +118,12 @@ function activateBtn(newMode) {
       colorBtn.classList.add('active');
     } else if (newMode === 'eraser') {
       eraserBtn.classList.add('active');
+    } else if (newMode === 'red') {
+        redBtn.classList.add('active');
+    } else if (newMode === 'green') {
+        greenBtn.classList.add('active');
+    } else if (newMode === 'blue') {
+        blueBtn.classList.add('active');
     }
 }
 
