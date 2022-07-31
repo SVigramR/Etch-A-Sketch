@@ -16,12 +16,13 @@ html, body {
 }
 
 header h1 {
-    margin: 0;
+    margin: 1.5rem 0;
     color: #d98755;
     text-align: center;
     font-size: 40px;
 }
 
+/* Slider */
 #sizeSlider {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
@@ -42,6 +43,47 @@ header h1 {
     cursor: pointer;
 }
 
+#sizeValue {
+    font-size: large;
+}
+
+/* Color Input */
+input[type="color"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 3rem;
+    padding: 0;
+    width: 15rem;
+}
+  
+*:focus{
+    border-radius: 0;
+    outline: none;
+}
+  
+::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+  
+::-webkit-color-swatch{
+    border: 0;
+    border-radius: 50px;
+}
+
+::-moz-color-swatch,
+::-moz-focus-inner{
+  border: 0;
+}
+
+::-moz-focus-inner{
+  padding: 0;
+}
+
+/* Button */
 button {
     background-color: #CEE5D0;
     color: black;
@@ -49,12 +91,31 @@ button {
     width: 15rem;
     padding: 1rem;
     font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
+.active {
+    background-color: #32b861;
+    color: #dc5d0f;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+
+.right-controls>div {
+    display: flex;
+    gap: 16px;
+}
+
+.right-controls>div>button {
+    width: 8rem;
+}
+
+/* Draw Board */
 #container {
     width: 600px;
     height: 600px;
@@ -64,12 +125,47 @@ button:hover {
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-.active {
-    background-color: #32b861;
-    color: #dc5d0f;
-    font-weight: bolder;
-}
 
 .grid {
     border: 1px solid black;
 }
+
+/* .columns { */
+    /* display: flex;  
+    flex-direction: row;
+    width: 100%;
+}
+
+.column {
+    display: block;
+} */
+
+.left-controls {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.right-controls {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+} 
