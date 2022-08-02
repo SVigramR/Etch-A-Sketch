@@ -40,6 +40,9 @@ rainbowBtn.onclick = () => setMode('rainbow');
 redBtn.onclick = () => setMode('red');
 greenBtn.onclick = () => setMode('green');
 blueBtn.onclick = () => setMode('blue');
+rgBtn.onclick = () => setMode('redgreen');
+gbBtn.onclick = () => setMode('greenblue');
+brBtn.onclick = () => setMode('bluered');
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -92,6 +95,12 @@ function changeColor(e) {
         e.target.style.backgroundColor = `rgb(0, ${random(256)}, 0)`;
     } else if (currentMode === 'blue'){
         e.target.style.backgroundColor = `rgb(0, 0, ${random(256)})`;
+    } else if (currentMode === 'redgreen'){
+        e.target.style.backgroundColor = `rgb(${random(256)}, ${random(256)}, 0)`;
+    } else if (currentMode === 'greenblue'){
+        e.target.style.backgroundColor = `rgb(0, ${random(256)}, ${random(256)})`;
+    } else if (currentMode === 'bluered'){
+        e.target.style.backgroundColor = `rgb(${random(256)}, 0, ${random(256)})`;
     }
 
 }
@@ -110,6 +119,12 @@ function activateBtn(newMode) {
         greenBtn.classList.remove('active');
     } else if (currentMode === 'blue') {
         blueBtn.classList.remove('active');
+    } else if (currentMode === 'redgreen') {
+        rgBtn.classList.remove('active');
+    } else if (currentMode === 'greenblue') {
+        gbBtn.classList.remove('active');
+    } else if (currentMode === 'bluered') {
+        brBtn.classList.remove('active');
     }
   
     if (newMode === 'rainbow') {
@@ -124,6 +139,12 @@ function activateBtn(newMode) {
         greenBtn.classList.add('active');
     } else if (newMode === 'blue') {
         blueBtn.classList.add('active');
+    } else if (newMode === 'redgreen') {
+        rgBtn.classList.add('active');
+    } else if (newMode === 'greenblue') {
+        gbBtn.classList.add('active');
+    } else if (newMode === 'bluered') {
+        brBtn.classList.add('active');
     }
 }
 
