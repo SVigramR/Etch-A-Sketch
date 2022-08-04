@@ -169,3 +169,17 @@ main {
     justify-content: center;
     gap: 5rem;
 } 
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: gray;
+}
