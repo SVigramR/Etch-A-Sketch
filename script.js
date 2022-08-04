@@ -29,6 +29,7 @@ const blueBtn = document.getElementById("blueBtn");
 const rgBtn = document.getElementById("redGreenBtn");
 const gbBtn = document.getElementById("greenBlueBtn");
 const brBtn = document.getElementById("blueRedBtn");
+const hexPrompt = document.getElementById("hexPrompt");
 
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => refreshSize(e.target.value);
@@ -43,6 +44,7 @@ blueBtn.onclick = () => setMode('blue');
 rgBtn.onclick = () => setMode('redgreen');
 gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
+hexPrompt.onclick = () => isValidHex(prompt("Type your HEX Input: "));
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -81,6 +83,19 @@ function random(num) {
     return Math.floor(Math.random() * num);
 }
 
+
+function updateHex(hex) {
+    let regHex = /^#[0-9A-F]{6}$/i;
+    if(regHex.test(hex) === true) {
+        setColor(hex);
+        colorPicker.value = hex;
+    } else if (hex.length > 7){
+        alert("Your input exceeds")
+    } else {
+        alert("invalid input");
+    }
+}
+
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown) return
     if (currentMode === 'rainbow'){
@@ -102,7 +117,6 @@ function changeColor(e) {
     } else if (currentMode === 'bluered'){
         e.target.style.backgroundColor = `rgb(${random(256)}, 0, ${random(256)})`;
     }
-
 }
 
 
