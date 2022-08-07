@@ -44,7 +44,7 @@ blueBtn.onclick = () => setMode('blue');
 rgBtn.onclick = () => setMode('redgreen');
 gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
-hexPrompt.onclick = () => isValidHex(prompt("Type your HEX Input: "));
+hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \n (Hint: #00ff22)"));
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
