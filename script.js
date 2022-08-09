@@ -30,6 +30,7 @@ const rgBtn = document.getElementById("redGreenBtn");
 const gbBtn = document.getElementById("greenBlueBtn");
 const brBtn = document.getElementById("blueRedBtn");
 const hexPrompt = document.getElementById("hexPrompt");
+const rgbPrompt = document.getElementById("rgbPrompt");
 
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => refreshSize(e.target.value);
@@ -45,6 +46,7 @@ rgBtn.onclick = () => setMode('redgreen');
 gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
 hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \n (Hint: #00ff22)"));
+rgbPrompt.onclick = () => updateRgb(prompt("Type your RGB Input: \nHint: rgb(0,0,0)"));
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -83,6 +85,26 @@ function random(num) {
     return Math.floor(Math.random() * num);
 }
 
+function RgbToHex(singleColor) {
+    let hexConv = singleColor.toString(16);
+    return hexConv.length == 1 ? "0" + hexConv : hexConv;
+}
+
+function updateRgb(rgb) {
+    let regRgb = /^rgb\((0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d)\)$/
+    let RGB = rgb.substring(rgb.indexOf('(') +1, rgb.length -1).split(',');
+    let r = parseInt(RGB[0]); g = parseInt(RGB[1]); b = parseInt(RGB[2])  ;
+    let rgbJoin = "#" + RgbToHex(r) + RgbToHex(g) + RgbToHex(b);
+    
+    if(regRgb.test(rgb) === true){
+        setColor(rgbJoin);
+        colorPicker.value = rgbJoin;
+    } else if(rgb.search(", ")){
+        alert("No Spaces After Comma");
+    } else {
+        alert("Invalid Input");
+    }
+}
 
 function updateHex(hex) {
     let regHex = /^#[0-9A-F]{6}$/i;
@@ -90,7 +112,7 @@ function updateHex(hex) {
         setColor(hex);
         colorPicker.value = hex;
     } else if (hex.length > 7){
-        alert("Your input exceeds")
+        alert("Your input exceeds");
     } else {
         alert("invalid input");
     }
