@@ -98,6 +98,7 @@ function updateRgb(rgb) {
     
     if(regRgb.test(rgb) === true){
         setColor(rgbJoin);
+        setMode('color');
         colorPicker.value = rgbJoin;
     } else if(rgb.search(", ")){
         alert("No Spaces After Comma");
@@ -110,6 +111,7 @@ function updateHex(hex) {
     let regHex = /^#[0-9A-F]{6}$/i;
     if(regHex.test(hex) === true) {
         setColor(hex);
+        setMode('color');
         colorPicker.value = hex;
     } else if (hex.length > 7){
         alert("Your input exceeds");
