@@ -31,6 +31,7 @@ const gbBtn = document.getElementById("greenBlueBtn");
 const brBtn = document.getElementById("blueRedBtn");
 const hexPrompt = document.getElementById("hexPrompt");
 const rgbPrompt = document.getElementById("rgbPrompt");
+const hslPrompt = document.getElementById("hslPrompt");
 
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => refreshSize(e.target.value);
@@ -47,6 +48,7 @@ gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
 hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \nHint: #00ff22"));
 rgbPrompt.onclick = () => updateRgb(prompt("Type your RGB Input: \nHint: rgb(0,0,0)"));
+hslPrompt.onclick = () => updateHsl(prompt("Type your HSL Input: \nHint: hsl(360,100%,50%)"));
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -84,9 +86,39 @@ function random(num) {
     return Math.floor(Math.random() * num);
 }
 
-function RgbToHex(singleColor) {
+function hslToHex(h, s, l) {
+    l /= 100;
+    const a = s * Math.min(l, 1 - l) / 100;
+    const f = n => {
+      const k = (n + h / 30) % 12;
+      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+      return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function rgbToHex(singleColor) {
     let hexConv = singleColor.toString(16);
     return hexConv.length == 1 ? "0" + hexConv : hexConv;
+}
+
+function updateHsl(hsl) {
+    let regHsl = /^hsl\((0|360|35\d|3[0-4]\d|[12]\d\d|0?\d?\d),(0|100|\d{1,2})%,(0|100|\d{1,2})%\)$/,
+        HSL = hsl.substring(hsl.indexOf('(') +1, hsl.length -1).split(','),
+        h = parseInt(HSL[0]),
+        s = parseInt(HSL[1]),
+        l = parseInt(HSL[2]),
+        hex = hslToHex(h,s,l); 
+
+    if(regHsl.test(hsl) === true){
+        setColor(hex);
+        setMode('color');
+        colorPicker.value = hex;
+    } else if(hsl === ""){
+        alert("Empty Input");
+    } else {
+        alert("Invalid Input");
+    }
 }
 
 function updateRgb(rgb) {
@@ -95,7 +127,7 @@ function updateRgb(rgb) {
         r = parseInt(RGB[0]),
         g = parseInt(RGB[1]),
         b = parseInt(RGB[2]),
-        rgbJoin = "#" + RgbToHex(r) + RgbToHex(g) + RgbToHex(b);
+        rgbJoin = "#" + rgbToHex(r) + rgbToHex(g) + rgbToHex(b);
     
     if(regRgb.test(rgb) === true){
         setColor(rgbJoin);
