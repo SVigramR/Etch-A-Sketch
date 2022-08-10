@@ -31,7 +31,6 @@ const gbBtn = document.getElementById("greenBlueBtn");
 const brBtn = document.getElementById("blueRedBtn");
 const hexPrompt = document.getElementById("hexPrompt");
 const rgbPrompt = document.getElementById("rgbPrompt");
-const rgbaPrompt = document.getElementById("rgbaPrompt");
 
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => refreshSize(e.target.value);
@@ -48,12 +47,10 @@ gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
 hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \n (Hint: #00ff22)"));
 rgbPrompt.onclick = () => updateRgb(prompt("Type your RGB Input: \nHint: rgb(0,0,0)"));
-rgbaPrompt.onclick = () => updateRgba(prompt("Type your RGBA Input: \nHint: rgba(0,0,0,0.1)"))
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
-
 
 function updateSizeValue(value) {
     sizeValue.innerHTML = `${value} x ${value}`;
@@ -85,39 +82,6 @@ function makeGrids(size) {
 
 function random(num) {
     return Math.floor(Math.random() * num);
-}
-
-
-function RGBAtoRGB(r, g, b, a, r2,g2,b2){
-    let r3 = Math.round(((1 - a) * r2) + (a * r)),
-        g3 = Math.round(((1 - a) * g2) + (a * g)),
-        b3 = Math.round(((1 - a) * b2) + (a * b));
-    return {
-        red: r3,
-        green: g3,
-        blue: b3
-    };
-} 
-
-function updateRgba(rgba) {
-    let regRgba = /^rgba\((0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|0?\.\d|1(\.0)?)\)$/;
-    let RGBA = rgba.substring(rgba.indexOf('(') +1, rgba.length -1).split(','),
-        r = parseInt(RGBA[0]), 
-        g = parseInt(RGBA[1]), 
-        b = parseInt(RGBA[2]),
-        a = parseInt(RGBA[3]),
-        rgb = RGBAtoRGB(r,g,b,a,255,255,255),
-        rgbaJoin = "#" + RgbToHex(rgb.red) + RgbToHex(rgb.green) + RgbToHex(rgb.blue);
-    
-    if(regRgba.test(rgba) === true){
-        setColor(rgbaJoin);
-        setMode('color');
-        colorPicker.value = rgbaJoin;
-    } else if(rgba === ""){
-        alert("Empty Input");
-    } else {
-        alert("Invalid Input");
-    }
 }
 
 function RgbToHex(singleColor) {
