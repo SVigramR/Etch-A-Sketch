@@ -45,7 +45,7 @@ blueBtn.onclick = () => setMode('blue');
 rgBtn.onclick = () => setMode('redgreen');
 gbBtn.onclick = () => setMode('greenblue');
 brBtn.onclick = () => setMode('bluered');
-hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \n (Hint: #00ff22)"));
+hexPrompt.onclick = () => updateHex(prompt("Type your HEX Input: \nHint: #00ff22"));
 rgbPrompt.onclick = () => updateRgb(prompt("Type your RGB Input: \nHint: rgb(0,0,0)"));
 
 let mouseDown = false
@@ -90,17 +90,19 @@ function RgbToHex(singleColor) {
 }
 
 function updateRgb(rgb) {
-    let regRgb = /^rgb\((0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d)\)$/
-    let RGB = rgb.substring(rgb.indexOf('(') +1, rgb.length -1).split(',');
-    let r = parseInt(RGB[0]); g = parseInt(RGB[1]); b = parseInt(RGB[2])  ;
-    let rgbJoin = "#" + RgbToHex(r) + RgbToHex(g) + RgbToHex(b);
+    let regRgb = /^rgb\((0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d),(0|255|25[0-4]|2[0-4]\d|1\d\d|0?\d?\d)\)$/,
+        RGB = rgb.substring(rgb.indexOf('(') +1, rgb.length -1).split(','),
+        r = parseInt(RGB[0]),
+        g = parseInt(RGB[1]),
+        b = parseInt(RGB[2]),
+        rgbJoin = "#" + RgbToHex(r) + RgbToHex(g) + RgbToHex(b);
     
     if(regRgb.test(rgb) === true){
         setColor(rgbJoin);
         setMode('color');
         colorPicker.value = rgbJoin;
-    } else if(rgb.search(", ")){
-        alert("No Spaces After Comma");
+    } else if(rgb === ""){
+        alert("Empty Input");
     } else {
         alert("Invalid Input");
     }
@@ -114,8 +116,10 @@ function updateHex(hex) {
         colorPicker.value = hex;
     } else if (hex.length > 7){
         alert("Your input exceeds");
+    } else if (hex === ""){
+        alert("Empty Input");
     } else {
-        alert("invalid input");
+        alert("Invalid Input");
     }
 }
 
