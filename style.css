@@ -125,21 +125,11 @@ button:hover {
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-
 .grid {
     border: 1px solid black;
 }
 
-/* .columns { */
-    /* display: flex;  
-    flex-direction: row;
-    width: 100%;
-}
-
-.column {
-    display: block;
-} */
-
+/* Sections */
 .left-controls {
     display: flex;
     align-items: flex-start;
