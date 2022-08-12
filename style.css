@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Maze&display=swap');
+
 :root {
     --grid-rows: 1;
     --grid-cols: 1;
@@ -5,7 +7,7 @@
 
 html {
     color: black;
-    background-color: #CEE5D0;
+    background-color: darkgrey;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -17,9 +19,10 @@ html, body {
 
 header h1 {
     margin: 1.5rem 0;
-    color: #d98755;
+    color: #6830BF;
     text-align: center;
     font-size: 40px;
+    font-family: 'Rubik Maze', Helvetica;
 }
 
 /* Slider */
@@ -27,10 +30,10 @@ header h1 {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     width: 15rem;
-    height: 8px;
+    height: 20px;
+    border-radius: 10px;
     border: none;
-    border-radius: 4px;
-    background-color: #32b861;
+    background-color: #ffffff;
 }
 
 #sizeSlider::-webkit-slider-thumb {
@@ -39,7 +42,7 @@ header h1 {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #d98755;
+    background: #6830BF;
     cursor: pointer;
 }
 
@@ -85,9 +88,9 @@ input[type="color"] {
 
 /* Button */
 button {
-    background-color: #CEE5D0;
+    background-color: white;
     color: black;
-    border: 2px solid green;
+    border: 2px solid #594080;
     width: 15rem;
     padding: 1rem;
     font-size: 20px;
@@ -99,13 +102,46 @@ button:hover {
     transform: scale(1.05);
 }
 
-.active {
-    background-color: #32b861;
-    color: #dc5d0f;
-    font-weight: bolder;
+button:active {
     border-radius: 10px;
 }
 
+.right-button {
+    border: none;
+    height: 3rem;
+}
+
+.rg {
+    background-image: linear-gradient(to right, #ff0000 50%, #008000 50%);
+}
+
+.gb {
+    background-image: linear-gradient(to right, #008000 50%, #0000ff 50%);
+}
+
+.br {
+    background-image: linear-gradient(to right, #0000ff 50%, #ff0000 50%);
+}
+
+.active {
+    background-color: #594080;
+    color: #ffffff;
+    font-weight: bolder;
+    border: 3px solid #594080;
+    border-radius: 10px;
+    box-shadow: 5px 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+#clearBtn {
+    background-color: #e84545;
+    border: none;
+}
+
+#clearBtn:focus {
+    border-radius: 10px;
+}
+
+/* Right side buttons */
 .right-controls>div {
     display: flex;
     gap: 16px;
@@ -113,6 +149,21 @@ button:hover {
 
 .right-controls>div>button {
     width: 8rem;
+}
+
+.prompt {
+    border-radius: 10px;
+}
+
+.red {
+    background-color: #ff0000;
+}
+
+.blue {
+    background-color: #0000ff;}
+
+.green {
+    background-color: #008000;
 }
 
 /* Draw Board */
@@ -123,10 +174,11 @@ button:hover {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
+    /* border: 3px solid #6830BF; */
 }
 
 .grid {
-    border: 1px solid black;
+    border: 1px solid #594080;
 }
 
 /* Sections */
@@ -158,4 +210,21 @@ main {
     display: flex;
     justify-content: center;
     gap: 5rem;
-} 
+    /* flex-wrap: wrap; */
+}
+
+/* Footer */
+.foo {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.foo a {
+    text-decoration: none;
+    color: black;
+}
+
+.foo a:hover {
+    color: #6830BF;
+}

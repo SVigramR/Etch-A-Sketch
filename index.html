@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch</title>
+    <link rel="icon" href="title_drawing.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
@@ -16,7 +17,7 @@
     <main class="columns">
         <div class="column left-controls">
             <input type="color" name="color" id="colorPicker">
-            <button id="colorBtn">Choose color</button>
+            <button id="colorBtn">Color</button>
             <button id="rainbowBtn">Rainbow</button>
             <button id="eraserBtn">Eraser</button>
             <button id="clearBtn">Clear</button>
@@ -28,29 +29,30 @@
         </div>
         <div class="right-controls">
             <div>
-                <button id="redBtn">R</button>
-                <button id="redGreenBtn">RG</button>
+                <button class="red right-button" id="redBtn"></button>
+                <button class="rg right-button" id="redGreenBtn"></button>
             </div>
             <div>
-                <button id="greenBtn">G</button>
-                <button id="greenBlueBtn">GB</button>
+                <button class="green right-button" id="greenBtn"></button>
+                <button class="gb right-button" id="greenBlueBtn"></button>
           
             </div>
             <div>
-                <button id="blueBtn">B</button>
-                <button id="blueRedBtn">BR</button>
+                <button class="blue right-button" id="blueBtn"></button>
+                <button class="br right-button" id="blueRedBtn"></button>
             </div>
             <div>
-                <button id="hexPrompt">HEX Prompt</button>
-                <button id="rgbPrompt">RGB Prompt</button>
+                <button class="prompt" id="hexPrompt">HEX</button>
+                <button class="prompt" id="rgbPrompt">RGB</button>
             </div>
             <div>
-                <button id="hslPrompt">HSL Prompt</button>
+                <button class="prompt" id="hslPrompt">HSL</button>
             </div>
         </div>
     </main>
 
     <footer>
+        <h4 class="foo">Made By <a href="https://github.com/SVigramR/Etch-A-Sketch" target="_blank">SVigramR</a></h4>
     </footer>
 </body>
 </html>
